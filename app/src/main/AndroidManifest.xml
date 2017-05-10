@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.arcaneconstruct.cursbnr">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="com.arcaneconstruct.cursbnr.rates.provider.READWRITE"></permission>
+    <uses-permission android:name="com.arcaneconstruct.cursbnr.rates.provider.READWRITE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:authorities="com.arcaneconstruct.cursbnr"
+            android:name="com.arcaneconstruct.cursbnr.ExchangeProvider"
+            android:exported="true"
+            android:readPermission="com.arcaneconstruct.cursbnr.rates.provider.READWRITE"
+            android:writePermission="com.arcaneconstruct.cursbnr.rates.provider.READWRITE"/>
+
+
+        <receiver android:name=".BnrAlarmReceiver"></receiver>
+        <service android:name=".SchedulingService" />
+    </application>
+
+</manifest>
